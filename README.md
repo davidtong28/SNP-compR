@@ -1,7 +1,7 @@
 # SNP-compR
 
 ## Introduction
-SNP-compR (SNP-compare) is an R package made for bacterial comparative genomics. It offers functionality to:
+SNPcompR (SNPcompare) is an R package made for bacterial comparative genomics. It offers functionality to:
 1. Compare mutations among highly similar genomes.
 2. Characterize each identified mutation by type (indel, SNP etc.).
 3. Identifies the outcome of each mutation (non-synonymous, synonymous, frameshift etc.), as well as the post-mutation translation product.
@@ -12,9 +12,9 @@ i. **A multi-VCF file** of a set of highly similar genomes (Can be derived from 
 ii. **An annotated reference genome**, provided in long `GFF3` format (annotation + `FASTA`).
 
 ## Installation
-Install `SNP-compR` via `devtools`:
+Install `SNPcompR` via `devtools`:
 ```
-devtools::install_github("davidtong28/SNP-compR")
+devtools::install_github("davidtong28/SNPcompR")
 ```
 SNP-compR requires the following R packages:
 1. dplyr
@@ -42,8 +42,8 @@ bcftools merge -m all *.vcf.gz > merged.vcf;bcftools norm -f /path/to/reference/
 The `norm_merged.vcf` file contains a multi-VCF file with all mutation sites normalized (multiple mutations at the same site are counted in different lines), and is the desired input for this tool. `/path/to/reference/fasta` is the path to the fasta file of your reference genome.
 A separate annotated reference genome (in either long `GFF3` format, containing both annotation and FASTA data, or a short `GFF3` format file with a FASTA file) must be provided as input.
 
-## Running SNP-compR
-You can either run `SNP-compR` as a do-it-all script, or manually call its functions however you wish.
+## Running SNPcompR
+You can either run `SNPcompR` as a do-it-all script, or manually call its functions however you wish.
 ### Do-it-all script
 Under construction...
 ### Calling separate functions
