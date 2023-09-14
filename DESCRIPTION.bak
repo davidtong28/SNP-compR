@@ -1,0 +1,21 @@
+Package: SNP_compR
+Type: Package
+Title: An R package for comparing and visualizing multi-VCF files
+Version: 0.1.0
+Author: davidtong28
+Maintainer: davidtong28 <tongshanwei111@gmail.com>
+Description: SNP-compR (SNP-compare) is an R package made for bacterial comparative genomics. It offers functionality to: 1.Compare mutations among highly similar genomes. 2.Characterize each identified mutation by type (indel, SNP etc.). 3.Identifies the outcome of each mutation (non-synonymous, synonymous, frameshift etc.), as well as the post-mutation translation product. 4.Generate visualizations of mutations. In order to obtain such results, the following files should be provided as input: i. A multi-VCF file of a set of highly similar genomes (Can be derived from multiple VCF files, see Input Generation), generated using the same reference genome. ii. An annotated reference genome, provided in long GFF3 format (annotation + FASTA).
+License: MIT license
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Imports:
+    dplyr,
+    tidyr,
+    magrittr,
+    stringr,
+    vcfR,
+    ape,
+    Biostrings,
+    ggplot2,
+    ggtree,
