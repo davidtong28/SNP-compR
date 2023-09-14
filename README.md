@@ -9,7 +9,10 @@ SNPcompR (SNPcompare) is an R package made for bacterial comparative genomics. I
 3. Identifies the outcome of each mutation (non-synonymous, synonymous, frameshift etc.), as well as the post-mutation translation product.
 4. Generate visualizations of mutations.
 
-In order to obtain such results, the following files should be provided as input: i. **A multi-VCF file** of a set of highly similar genomes (Can be derived from multiple VCF files, see **Input Generation**), generated using the same reference genome. ii. **An annotated reference genome**, provided in long `GFF3` format (annotation + `FASTA`).  
+In order to obtain such results, the following files should be provided as input:  
+i. **A multi-VCF file** of a set of highly similar genomes (Can be derived from multiple VCF files, see **Input Generation**), generated using the same reference genome. 
+ 
+ii. **An annotated reference genome**, provided in long `GFF3` format (annotation + `FASTA`).  
 
 ## Installation
 Install `SNPcompR` via `devtools`:
@@ -49,14 +52,29 @@ Under construction...
 #### Input data  
 The input data will be
 ```         
-input_data_long(vcf_path,long_gff_path,dna_path=NA,vcf_name="vcf",gff_name="gff",concat_dna_name="dna",dna_name=paste(concat_dna_name,"_contigs",sep = ""))
+input_data_long(vcf_path,
+                long_gff_path,
+                dna_path=NA,
+                vcf_name="vcf",
+                gff_name="gff",
+                concat_dna_name="dna",
+                dna_name=paste(concat_dna_name,"_contigs",sep = "")
+)
 ```
 - The VCF data will be stored at variable "vcf_name" in global environment (which is `vcf` by default).  
 - The annotation will be stored into the variable "gff_name" (which `gff` by default) and FASTA into "concat_dna_name" (concatenated DNA, `dna` by default) and "dna_name" (DNA in contigs, `dna_contigs` by default).
 - When `dna_path` is NA (default), a long `GFF3` file will be expected. Alternatively, you can specify `dna_path` to input a short `GFF3` file and a `FASTA` file, in which case, the provided GFF3 will be interpreted as a short GFF3 file, and the FASTA components will be ignored.
 #### SNP analysis
 ```         
-vcgff_gen(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=F,count=F,remove_consensus=F,fix_contig_name=NA)
+vcgff_gen(vcf=vcf,
+          gff=gff,
+          dna_c=dna,
+          dnaContigs=dna_contigs,
+          virulence=F,
+          count=F,
+          remove_consensus=F,
+          fix_contig_name=NA
+)
 ```
 The main function. Takes in VCF and GFF data, and outputs a dataframe that records all CDS-altering mutations, identifies their outcomes (non-synonymous, synonymous, frameshift etc.), and predicts the post-mutation translation product. Intergenic mutations will be ignored. Here are the descriptions of its input arguments:  
 - `vcf` vcfR object, ideally generated from FreeBayes. Defaults to global environment object 'vcf'.  
@@ -68,7 +86,8 @@ The main function. Takes in VCF and GFF data, and outputs a dataframe that recor
 - `count` if the presence absence of the loci should be counted, defaults to FALSE.  
 - `fix_contig_name` *BETA*. Defaults to NA.If the contig names on the GFF file and the VCF file does not match, you can provide a vector of fixed contig names, which matches the names on the gff file. Contig names on the VCF and the dnaContigs will be changed accordingly.
 ```         
-fst_<-function(mut_table,subpop_vector)
+fst_(mut_table,
+     subpop_vector)
 ```
 When given a suspected subpopulation, `fst_` is able to calculate the [FST](https://en.wikipedia.org/wiki/Fixation_index) of all mutation loci from an output sheet of the main function `vcgff_gen()`. FST is calculated using the following equation:  
 ![FST equation](FST_equation.png)
@@ -76,8 +95,13 @@ When given a suspected subpopulation, `fst_` is able to calculate the [FST](http
 - `subpop_vector` A vector that records the suspected subpopulation that would be examined for FST. The vector should be numerical, in the order of the column name that appeared in the mut_table.  
 #### SNP visualization
 ```         
-draw_SNP_phylo(mut_table,half=F,range=c(0,2000000),win=(range[2]-range[1])/200,
-                         GGTR=as.phylo(htree(mut_table)) %>% ggtree(ladderize = F)+geom_tiplab(align = T)+geom_rootpoint()+ xlim_tree(5.5), Size=7)
+draw_SNP_phylo( mut_table,
+                half=F,
+                range=c(0,2000000),
+                win=(range[2]-range[1])/200,
+                GGTR=as.phylo(htree(mut_table)) %>% ggtree(ladderize = F)+geom_tiplab(align = T)+geom_rootpoint()+ xlim_tree(5.5),
+                Size=7
+)
 ```
 This is a visualization function to draw SNP distributions by position in the form of sliding windows.  
 - `mut_table` Output sheet from the main function `vcgff_gen()`.  
