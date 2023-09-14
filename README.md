@@ -71,7 +71,7 @@ The main function. Takes in VCF and GFF data, and outputs a dataframe that recor
 ```
 fst_<-function(mut_table,subpop_vector)
 ```
-When given a suspected subpopulation, `fst_` is able to calculate the [FST](https://en.wikipedia.org/wiki/Fixation_index) of all mutation loci from an output sheet of the main function `vcgff_gen()`. FST is calculated using the following equation:
+When given a suspected subpopulation, `fst_` is able to calculate the [FST](https://en.wikipedia.org/wiki/Fixation_index) of all mutation loci from an output sheet of the main function `vcgff_gen()`. FST is calculated using the following equation:  
 ![FST equation](FST_equation.png)
 - `mut_table` Output sheet from the main function `vcgff_gen()`.
 - `subpop_vector` A vector that records the suspected subpopulation that would be examined for FST. The vector should be numerical, in the order of the column name that appeared in the mut_table.
@@ -89,9 +89,9 @@ This is a visualization function to draw SNP distributions by position in the fo
 - `Size` Text size, defaults to 7
 
 ## Expected results
-The expected results for the main function, `vcgff_gen` should be a large dataframe that stores all identified non-intergenic mutations. Each row is an identified mutation. Columns 1-28 records the properties of the mutations, such as start and end positions, expected outcome and product etc. Columns 29+ records the presence and absence of these mutations in all isolates. One example of the output dataframe can be seen [here](https://cloud.cidgoh.ca/s/LSpNTQPZCd83mC3).
-The expected results for `fst_` should be an altered version of the aforementioned dataframe, with FST and other data added. 
-The expected results for `draw_SNP_phylo` should look like this:
+- The expected results for the main function, `vcgff_gen` should be a large dataframe that stores all identified non-intergenic mutations. Each row is an identified mutation. Columns 1-28 records the properties of the mutations, such as start and end positions, expected outcome and product etc. Columns 29+ records the presence and absence of these mutations in all isolates. One example of the output dataframe can be seen [here](https://cloud.cidgoh.ca/s/LSpNTQPZCd83mC3).  
+- The expected results for `fst_` should be an altered version of the aforementioned dataframe, with FST and other data added.  
+- The expected results for `draw_SNP_phylo` should look like this:  
 ![draw_SNP_phylo plot](mutations50_drawSNPphylo.png)
 
 
