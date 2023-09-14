@@ -27,7 +27,7 @@ SNP-compR requires the following R packages:
 - ggplot2
 - ggtree
 - stats
-- grDevices
+- grDevices  
 They will be installed automatically if not already installed.
 
 ## Input Generation
