@@ -27,7 +27,7 @@ read_long_gff3 <- function(longgff_path,keepDNA=T,gff_NAME="gff",concat_dna_NAME
       DNAString()
     assign(concat_dna_NAME,value = DNA,envir = .GlobalEnv)
   }else{
-    shortgff3<-read.gff("xx00",GFF3=T)  
+    shortgff3<-read.gff(longgff_path,GFF3=T)  
     assign(gff_NAME,value = shortgff3,envir = .GlobalEnv)
   }
 }
