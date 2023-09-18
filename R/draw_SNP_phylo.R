@@ -21,8 +21,8 @@ draw_SNP_phylo<-function(mut_table,half=F,range=c(0,2000000),win=(range[2]-range
                          GGTR=as.phylo(htree(mut_table)) %>% ggtree(ladderize = F)+geom_tiplab(align = T)+geom_rootpoint()+ xlim_tree(5.5), Size=7){
   
   counttable<-mut_pos_count(mut_table,win,half)%>%
-    filter(window<=ceiling(range[2]/win) ) %>%
-    filter(window>= ceiling(range[1]/win)) %>%
+    dplyr::filter(window<=ceiling(range[2]/win) ) %>%
+    dplyr::filter(window>= ceiling(range[1]/win)) %>%
     mutate(window=window*win) %>%
     pivot_longer(cols = c(-1),names_to = "isolate",values_to = "count") %>%
     na_if(0) %>% 

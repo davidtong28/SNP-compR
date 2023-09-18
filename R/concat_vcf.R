@@ -20,7 +20,7 @@ concat_vcf=function(vcf,contig,remove_consensus=F,count=F){
     as.data.frame() %>% 
     rowwise %>% 
     mutate(var_count=if(count){ ncol(vcf@gt)-1-sum( (c_across( c( 9:( 7+ncol(vcf@gt) ) ) ) ) ==0 ) }else{NA} ) %>%
-    filter(if(remove_consensus){var_count<ncol(vcf@gt)-1}else{TRUE}) %>%
+    dplyr::filter(if(remove_consensus){var_count<ncol(vcf@gt)-1}else{TRUE}) %>%
     rename( "#CHROM"=CHROM ) %>%
     arrange( `#CHROM` ) %>% 
     mutate( POS=as.numeric(POS) ) %>%

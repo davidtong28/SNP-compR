@@ -12,7 +12,7 @@
 concat_gff=function(gff,contig){
   gff %>% 
     #`|` is used as the OR operator instead of `||`. `|` `&` is element-wise, and `||`, `&&` returns one value
-    filter( type=="CDS" ) %>%
+    dplyr::filter( type=="CDS" ) %>%
     mutate( score=contig$cum_lnth[match(seqid,contig$seqid)] ) %>% 
     mutate( start=start+score ) %>% 
     mutate( end=end+score ) %>% 
