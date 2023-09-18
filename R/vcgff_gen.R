@@ -68,7 +68,7 @@ vcgff_gen = function(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=
       vcgff$start[m] <- NA
       vcgff$end[m] <- NA
       vcgff$attributes[m] <- "contig_tip"
-      vcgff$filter[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
+      vcgff$FILTER[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
       
     }else{
       
@@ -86,7 +86,7 @@ vcgff_gen = function(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=
           vcgff$gene_name[m] <- vcgff$gene_name[m-1]
           vcgff$phase[m]<-vcgff$phase[m-1]
           vcgff$strand[m] <- vcgff$strand[m-1]
-          vcgff$filter[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
+          vcgff$FILTER[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
           
         }else{
           if(vcgff$seqid[m]!=vcgff$seqid[m+1] || m==nrow(vcgff) ){
@@ -95,7 +95,7 @@ vcgff_gen = function(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=
             vcgff$start[m] <- NA
             vcgff$end[m] <- NA
             vcgff$attributes[m] <- "contig_tip"
-            vcgff$filter[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
+            vcgff$FILTER[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
             
           }else{
             
@@ -104,7 +104,7 @@ vcgff_gen = function(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=
             vcgff$start[m] <- NA
             vcgff$end[m] <- NA
             #to do: find a way to call the next gene row number
-            vcgff$filter[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
+            vcgff$FILTER[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
             
           }
         }
@@ -117,7 +117,7 @@ vcgff_gen = function(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=
           vcgff$start[m] <- NA
           vcgff$end[m] <- NA
           vcgff$attributes[m] <- "contig_tip"
-          vcgff$filter[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
+          vcgff$FILTER[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
           
         }else{
           #In case multiple variations are found within the same locus,
@@ -132,7 +132,7 @@ vcgff_gen = function(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=
             vcgff$gene_name[m] <- vcgff$gene_name[n]
             vcgff$phase[m]<-vcgff$phase[n]
             vcgff$strand[m] <- vcgff$strand[n]
-            vcgff$filter[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
+            vcgff$FILTER[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
             
           }else{
             
@@ -142,7 +142,7 @@ vcgff_gen = function(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=
               vcgff$start[m] <- NA
               vcgff$end[m] <- NA
               vcgff$attributes[m] <- "contig_tip"
-              vcgff$filter[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
+              vcgff$FILTER[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
               
             }else{
               
@@ -150,7 +150,7 @@ vcgff_gen = function(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=
               vcgff$start[m] <- NA
               vcgff$end[m] <- NA
               vcgff$attributes[m] <- paste("intergenic",vcgff$gene_ID[n],vcgff$strand[n],sep = ",")
-              vcgff$filter[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
+              vcgff$FILTER[m] <- sprintf( "mut%03d", 1:nrow(vcf_c1) )[i]
             }
           }
         }
@@ -219,7 +219,7 @@ vcgff_gen = function(vcf=vcf,gff=gff,dna_c=dna,dnaContigs=dna_contigs,virulence=
     ) ) %>%
     rename("Contig"="seqid") %>%
     rename("ref"="phase") %>% 
-    rename("Mutation_id"="filter") %>%
+    rename("Mutation_id"="FILTER") %>%
     rename("DNA_mutation_position"="position_of_mutation") %>%
     mutate("ref_length_aa"=nchar(ref_aa),"mut_length_aa"=nchar(mut_aa)) %>%
     mutate("factor"=ifelse(str_detect(attributes,"VFDB"),"virulence",ifelse(str_detect(attributes,"resistance"),"resistance",NA) ) ) %>% 
