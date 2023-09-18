@@ -31,7 +31,7 @@ draw_SNP_phylo<-function(mut_table,half=F,range=c(0,2000000),win=(range[2]-range
   GGTR+
     geom_facet(data = counttable,mapping = aes(x=window,fill=`count`),
                geom = geom_tile,panel = 'Point Mutations')+
-    scale_fill_gradientn(colours = c("#73bcc9","gold","#ff0000"),values = c(0,0.5-(0.25*(mean(counttable$count )-median(counttable$count ))/mean(counttable$count ) ),1),na.value = grey(0.85),guide = "colourbar")
+    scale_fill_gradientn(colours = c("#73bcc9","gold","#ff0000"),values = c(0,0.5-(0.25*(mean(counttable$count )-median(counttable$count ))/mean(counttable$count ) ),1),na.value = grey(0.85),guide = "colourbar")+
     theme(text = element_text(size = Size))+
     theme_tree2()
   
